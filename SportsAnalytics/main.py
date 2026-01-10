@@ -115,4 +115,3 @@ save_to_csv(df_player_stats, "player_statistics.csv")
 save_to_postgres(df_player_stats, "player_statistics", ENGINE)
 print(f"Player statistics saved: {df_player_stats.shape[0]} rows")
 
-print("ETL Complete ✅")
