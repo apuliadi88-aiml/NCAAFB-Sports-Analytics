@@ -9,8 +9,10 @@ from extract_and_transform import (
 )
 from load import (
     save_to_csv, 
-    save_to_postgres
+    save_to_postgres,
+    create_table_postgres
 )
+from create_table_queries import *
 from config import ENGINE  # SQLAlchemy engine
 
 # ------------------------------
@@ -19,6 +21,7 @@ from config import ENGINE  # SQLAlchemy engine
 print("Fetching Rankings...")
 df_rankings = fetch_rankings()
 save_to_csv(df_rankings, "rankings.csv")
+create_table_postgres(RANKINGS_QUERY, ENGINE)
 save_to_postgres(df_rankings, "rankings", ENGINE)
 print(f"Rankings saved: {df_rankings.shape[0]} rows")
 
@@ -29,7 +32,6 @@ print("Fetching Teams...")
 # Assuming fetch_teams returns a DataFrame
 df_teams = fetch_teams()  
 save_to_csv(df_teams, "teams.csv")
-save_to_postgres(df_teams, "teams", ENGINE)
 print(f"Teams saved: {df_teams.shape[0]} rows")
 
 # ------------------------------
@@ -73,12 +75,20 @@ df_venues = pd.concat(all_venues, ignore_index=True)
 df_divisions = pd.concat(all_divisions, ignore_index=True)
 df_conferences = pd.concat(all_conferences, ignore_index=True)
 
-save_to_csv(df_teams_roster, "team_roster.csv")
+save_to_csv(df_teams_roster, "teams_roster.csv")
 save_to_csv(df_players, "players.csv")
 save_to_csv(df_coaches, "coaches.csv")
 save_to_csv(df_venues, "venues.csv")
 save_to_csv(df_divisions, "divisions.csv")
 save_to_csv(df_conferences, "conferences.csv")
+
+
+create_table_postgres(VENUES_QUERY, ENGINE)
+create_table_postgres(DIVISIONS_QUERY, ENGINE)
+create_table_postgres(CONFERENCES_QUERY, ENGINE)
+create_table_postgres(TEAMS_QUERY, ENGINE)
+create_table_postgres(PLAYERS_QUERY, ENGINE)
+create_table_postgres(COACHES_QUERY, ENGINE)
 
 save_to_postgres(df_venues, "venues", ENGINE)
 save_to_postgres(df_divisions, "divisions", ENGINE)
@@ -95,6 +105,7 @@ print("Team roster, players, coaches, venues, divisions, conferences saved.")
 print("Fetching Seasons...")
 df_seasons = fetch_seasons()
 save_to_csv(df_seasons, "seasons.csv")
+create_table_postgres(SEASONS_QUERY, ENGINE)
 save_to_postgres(df_seasons, "seasons", ENGINE)
 print(f"Seasons saved: {df_seasons.shape[0]} rows")
 
@@ -112,6 +123,9 @@ for season in df_seasons["year"]:
 
 df_player_stats = pd.concat(all_player_stats, ignore_index=True)
 save_to_csv(df_player_stats, "player_statistics.csv")
+create_table_postgres(PLAYER_STATISTICS_QUERY, ENGINE)
 save_to_postgres(df_player_stats, "player_statistics", ENGINE)
 print(f"Player statistics saved: {df_player_stats.shape[0]} rows")
+
+print("ETL Complete ✅")
 
