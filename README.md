@@ -8,7 +8,6 @@ SportsAnalytics/
 ├── main.py          # Orchestrates ETL pipeline
 ├── utils.py         # Helper functions for API limit handling
 ├── create_tables_queries.py # Contains queries to create tables
-├── create_tables.py # Connects to database and creates tables
 ├── db_connection.py # Create db connection to extract data for streamlit application
 ├── extract_and_transform.py # Extracts raw data from API endpoints,cleans & transforms data
 ├── load.py          # Loads data into PostgreSQL tables, and creates css files
