@@ -130,10 +130,3 @@ CREATE TABLE IF NOT EXISTSrankings (
 );
 """
 
-SAMPLE_QUERY = """
-CREATE TABLE IF NOT EXISTS sample_table (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(100),
-    value INT
-);
-"""
