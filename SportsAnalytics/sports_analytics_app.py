@@ -14,3 +14,4 @@ Navigate through different sections to analyze various aspects of the sport.
 Enjoy your exploration! 
 """)
 
+# Check the pages folder for the sidebar contents - Home Dashboard, Teams Explorer, Players Explorer,Seasons_And_Schedule_Viewer, Rankings, Venue_Directory, Coaches_table
